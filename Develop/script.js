@@ -49,7 +49,8 @@ var PasswordGenerator = {
       notAsRandomPassword.push(randomChar);
     } // for
 
-    return notAsRandomPassword.join("");
+    var randomPassword = notAsRandomPassword.sort( () => Math.random() - 0.5 );
+    return randomPassword.join("");
   },
   writePassword: function(password) {
     this.passwordTextarea.value = password;
@@ -94,6 +95,8 @@ var PasswordGenerator = {
 
 // Get references to the #password element
 var passwordTextarea = document.querySelector("#password");
+
+// Init Password Generator
 PasswordGenerator.init(passwordTextarea)
 
 // Get references to the #generate element
