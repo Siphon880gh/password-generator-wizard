@@ -5,6 +5,6 @@ Generate an unique password from a set of criteria that user chooses in prompts.
 Visit the [demo](https://Siphon880gh.github.io/ucla-password-generator)
 
 ## Screenshots
-![Ask prompt](http://via.placeholder.com/500x500?text=Asks%20user)
+![Ask user](README/ask-user.png)
 
-![New password](http://via.placeholder.com/500x500?text=New%20password)
+![New password](README/new-password.png)
