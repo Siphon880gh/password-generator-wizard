@@ -21,7 +21,7 @@ var PasswordGenerator = {
       
     } while( response!=="yes" && response!=="no" )
 
-    return response;
+    return response==="yes";
   },
   promptLengthNum: function(msg, min, max) {
     var response = "";
@@ -37,6 +37,23 @@ var PasswordGenerator = {
 
     return response;
   },
+  generatePassword: function(characterSets, userLength) {
+    var notAsRandomPassword = [];
+    for(var i=0; i<userLength; i++) {
+      var characterSet = characterSets[i%characterSets.length]; /* TODO: Review; a MOD b returns 0 <= x < b */
+      var dec = Math.random();
+      var diff = characterSet.length;
+      // 0 to length - 1
+      var randomIndex = Math.floor( dec*(diff+1) );
+      var randomChar = characterSet[randomIndex];
+      notAsRandomPassword.push(randomChar);
+    } // for
+
+    return notAsRandomPassword.join("");
+  },
+  writePassword: function(password) {
+    this.passwordTextarea.value = password;
+  },
 
   /* Exposed methods */
   init(passwordTextarea) {
@@ -47,7 +64,7 @@ var PasswordGenerator = {
     var characterSets = [];
     // this.passwordTextarea.value = "Pending...";
 
-    alert("Generate password:\n\nYou will be asked the type of characters that make up the password. You must answer yes to at least one type of characters.\n\nFor the most secured password, you want all types of characters.");
+    alert("🔑 Generate password:\n\nYou will be asked the type of characters that make up the password. You must answer yes to at least one type of characters.\n\nFor the most secured password, you want all types of characters.");
 
     do {
       var yesLC = this.promptYesNo("Want lower case characters in your password? Answer YES or NO.");
@@ -69,7 +86,9 @@ var PasswordGenerator = {
     } while( !yesAtLeastOnce );
 
     var userLength = this.promptLengthNum("How long do you want your password? Enter a numerical value.", 8, 128);
-    debugger;
+    var password = this.generatePassword(characterSets, userLength);
+    this.writePassword(password);
+
   } // ask
 } // PasswordGenerator
 
@@ -79,4 +98,6 @@ PasswordGenerator.init(passwordTextarea)
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+
+// TODO: Review; Tricky point with objects; onclick changes the this-context to the event.target, so change the this-context back to the object
 generateBtn.addEventListener("click", PasswordGenerator.ask.bind(PasswordGenerator));
