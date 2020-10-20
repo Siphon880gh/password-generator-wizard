@@ -1,4 +1,4 @@
-/**
+ /**
  * PasswordGenerator
  * @class
  * @classdesc 
@@ -94,20 +94,24 @@ var PasswordGenerator = {
    * @yields {string} Random password
    */
   generatePassword: function(characterSets, userLength) {
-    var notAsRandomPassword = [];
+    var notAsRandomPassword = "";
     for(var i=0; i<userLength; i++) {
       var characterSet = characterSets[i%characterSets.length]; /* TODO: Review; a MOD b returns 0 <= x < b */
       var dec = Math.random();
       var diff = characterSet.length;
       // 0 to length - 1
-      var randomIndex = Math.floor( dec*(diff+1) );
+      var randomIndex = Math.floor( dec*diff );
       var randomChar = characterSet[randomIndex];
-      notAsRandomPassword.push(randomChar);
+      notAsRandomPassword+=randomChar;
     } // for
 
-    var randomPassword = notAsRandomPassword.sort( () => Math.random() - 0.5 );
-    return randomPassword.join("");
+    var randomPassword = notAsRandomPassword .split("")
+                                             .sort( () => Math.random() - 0.5 )
+                                             .join("");
+                                             
+    return randomPassword;
   },
+
   /**
    * 
    * Write password to textarea
