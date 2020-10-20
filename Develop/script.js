@@ -21,7 +21,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var passwordText = document.querySelector("#password");
 
-
+  passwordText.value = PasswordGenerator.write();
 }
 
 // Add event listener to generate button
