@@ -154,7 +154,7 @@ var PasswordGenerator = {
       var yesNum = this.promptYesNo("Want numerical characters in your password? Answer YES or NO.");
       if(yesNum) characterSets.push(this.characterSets.numerals);
 
-      var yesSp = this.promptYesNo(`Want special characters in your password? Answer YES or NO.\n\nExample: ${this.characterSets.special}`);
+      var yesSp = this.promptYesNo(`Want special characters in your password? Answer YES or NO.\nExample: ${this.characterSets.special}`);
       if(yesSp) characterSets.push(this.characterSets.special);
       
       yesAtLeastOnce = yesLC || yesUC || yesNum || yesSp;
@@ -163,7 +163,7 @@ var PasswordGenerator = {
 
     } while( !yesAtLeastOnce );
 
-    var userLength = this.promptLengthNum("How long do you want your password? Enter a numerical value.", 8, 128);
+    var userLength = this.promptLengthNum("How long do you want your password? Enter a numerical value between 8 and 128.", 8, 128);
     var password = this.generatePassword(characterSets, userLength);
     this.writePassword(password);
 
