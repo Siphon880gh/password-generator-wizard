@@ -1,8 +1,8 @@
 # Password Generator Starter Code
-Generate an unique password from a set of criteria that user chooses in prompts.
+Generate a unique password that is hard to crack. This tool walks you through different password criteria so you can choose how strong your password will be.
 
 ## Live
-Visit the [demo](https://Siphon880gh.github.io/ucla-password-generator)
+Visit the [demo](https://Siphon880gh.github.io/password-generator-wizard)
 
 ## Screenshots
 **1. Ask user**
